@@ -1,0 +1,69 @@
+\documentclass{article}
+
+% these packages let you do math
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% we need these packages for fancy R tables
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{xcolor}
+
+% these packages play with the spacing/margins of the document. Uncomment the commands on lines 16 and 17 to see what they do.
+\usepackage{a4wide}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{parskip}
+%\doublespacing
+%\geometry{margin=1.5in}
+
+% this package helps us with including images. Setting the graphics path makes it easier to refer to things in the \includegraphics command.
+\usepackage{graphicx}
+\graphicspath{ {../figures/} }
+
+% make some hyperlinks using the \href command
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+% set the author, title, and date of the document. \maketitle adds it to the document.
+\author{Elliot Spears}
+\title{NLSY97 Data Paper}
+\date{02/18/2022}
+
+\begin{document}
+\maketitle
+
+\section{Intro}
+
+In this paper I will be pulling data from the National Longitudinal Surveys database. I will be using data on incarceration rates during the year 2002 to decipher if there is any trend in the incarceration rate as broken down by gender and race.
+
+\section{Data}
+
+The following plot shows the mean value of months spent incarcerated. The data is grouped by race and gender. The first thing that stands out is the black male mean incarceration rate, which is substantially larger than the Hispanic and Non-Hispanic categories. The second thing that stands out is that both black and white women are not incarcerated nearly as often as their male counterparts, but hispanic women are incarcerated nearly as often as hispanic men.
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=.85\textwidth]{incarcerations_by_racegender.png}
+    \end{center}
+    \caption{Mean Number of Incarcerations in 2002 by Race and Gender (this is the LaTeX caption, not the ggplot title)}
+    \label{fig:graph}
+\end{figure}
+
+
+\input{../tables/incarcerations_by_racegender.tex}
+
+Performing a regression of months spent incarcerated on race and gender, we find that the coefficient on black male is positive, meaning that being black increases your incarceration time. Males also have a positive coefficient associated with incarceration time, which isn't surprising judging from the plot above.
+
+\input{../tables/regress_incarcerations_by_racegender.tex}
+
+\section{Conclusion}
+
+The data from the NLS database shows us that in the year 2002, black males were incarcerated at a much higher rate than any other group. Males were much more likely to be incarcerated than women, and hispanic women were the most incarcerated among women.
+
+\end{document}
